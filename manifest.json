@@ -6,7 +6,8 @@
   "permissions": [
     "activeTab",
     "<all_urls>",
-    "tabs"
+    "tabs",
+    // "https://github.com/"
   ],
   "browser_action": {
     "default_title": "Collect links",
@@ -17,5 +18,8 @@
       "matches": ["<all_urls>"],
       "js": ["content_script.js"]
     }
+  ],
+  "web_accessible_resources": [
+    "available.js"
   ]
 }
