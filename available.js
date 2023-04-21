@@ -6,7 +6,7 @@ function collect_links() {
       var nametext = x[i].textContent;
       var cleantext = nametext.replace(/\s+/g, ' ').trim();
       var cleanlink = x[i].href;
-      if (x[i].href) {
+      if (x[i].href.includes('film/')) {
         var isDuplicate = false;
         for (var j = 0; j < myarray.length; j++) {
           if (myarray[j][1] === cleanlink) {
@@ -37,9 +37,29 @@ function make_table(data) {
     return table;
 }
 
+function make_list(data) {
+    console.log("Extension : creating the table...");
+    var list = '';
+    for (var i=0; i<data.length; i++) {
+      list += data[i][1]+'\n';
+    };
+    return list;
+}
+
+function downloadStringAsFile(text, filename) {
+  const blob = new Blob([text], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.download = filename;
+  a.href = url;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 function run() {
     var a = collect_links();
-    var t = make_table(a);
+    var t = make_list(a);
+    downloadStringAsFile(t, 'list.txt');
     console.log("Extension : ready for display...");
     return t;
 }
