@@ -6,8 +6,7 @@
   "permissions": [
     "activeTab",
     "<all_urls>",
-    "tabs",
-    // "https://github.com/"
+    "tabs"
   ],
   "browser_action": {
     "default_title": "Collect links",
